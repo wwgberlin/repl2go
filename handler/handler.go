@@ -35,4 +35,5 @@ func RunHandler(w http.ResponseWriter, r *http.Request) {
 	// Invoke Interpreter(Yaegi) on the Message.Last command
 	// Store the latest output
 	// Respond 200 where the body contains a new json with all the historical outputs and (at least) latest output & a dummy string for the valid go file
+	w.WriteHeader(http.StatusOK)
 }
