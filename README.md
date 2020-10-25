@@ -46,12 +46,12 @@ The web server responds with the result of the latest input as well as the valid
 
 Run all tests:
 ```go
-go test
+go test ./...
 ```
 
 Start the server locally:
 ```go
-go run
+go run main.go
 ```
 This will start the server on your local machine on Port 8000.
 
@@ -61,18 +61,25 @@ To try the functionality, you can send messages to `localhost:8000` using e.g. a
 
 To send an inital message (with empty history) using curl:
 ```
+curl -X POST \
+  http://localhost:8000/run \
+  -H 'Postman-Token: f9434e68-af5f-41e6-beac-737c3d269703' \
+  -H 'cache-control: no-cache' \
+  -d '{
+"Last": "fmt.Println(\"hello\");",
+"Hist": []
+}'
+```
+
+*TODO:* To send a message with some history using curl:
+```
 curl ....
 ```
 
-To send a message with some history using curl:
-```
-curl ....
-```
-
-To send an inital message (with empty history) using Postman:
+To send an inital message (with empty history) using **Postman**:
 - set HTTP Method to `POST`
 - set URL to `localhost:8000/run`
-- set the format for body to ??
+- set the format for body to "raw"
 
 Enter a valid JSON Object as the body:
 ```JSON
