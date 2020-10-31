@@ -28,6 +28,7 @@ func main() {
 	mux := http.NewServeMux()
 	finalHandler := http.HandlerFunc(handler.RunHandler)
 	mux.Handle("/run", logger(finalHandler))
+	mux.Handle("/", logger(http.NotFoundHandler()))
 
 	log.Println("Starting server on localhost:8000")
 	err := http.ListenAndServe(":8000", mux)
